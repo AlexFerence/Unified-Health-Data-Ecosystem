@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OAuth token cache (contains sensitive refresh tokens)
+cache/
+
+# Database files (SQLite + WAL sidecar files)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+*.db-wal
+*.db-shm
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+
+# Editor settings
+.vscode/
+.github/
+
+archive/
+
+docs/post.md
+
+data/template-meals.json
+
+docs/post.md
+docs/nomic.md
+
+scripts/
+
+data/agent.db
