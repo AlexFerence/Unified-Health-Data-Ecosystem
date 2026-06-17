@@ -41,8 +41,6 @@ const getToolsToRegister = (): StructuredToolInterface[] => {
     return tools;
 };
 
-const toolsByName: Record<string, StructuredToolInterface> = Object.fromEntries(
+export const toolsByName: Record<string, StructuredToolInterface> = Object.fromEntries(
     getToolsToRegister().map(t => [t.name, t])
 );
-
-export { getToolsToRegister, toolsByName };

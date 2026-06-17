@@ -48,7 +48,6 @@ function createModel() {
 const model = createModel();
 
 // Augment the LLM with tools
-
 const isKnownToolName = (name: string): name is keyof typeof toolsByName => name in toolsByName;
 
 // Per-service concurrency limiters for rate-limited external APIs.
@@ -77,7 +76,7 @@ const tools = Object.values(toolsByName);
 
 // When using a local LLM, small context windows can't fit all tool schemas.
 // Set LOCAL_LLM_TOOLS to a comma-separated list of tool names to whitelist
-// (e.g. "get_current_date,perplexity_web_search"). Unrecognised names are ignored.
+// (e.g. "get_current_date,perplexity_web_search"). Unrecognized names are ignored.
 // Anthropic always gets the full tool list.
 const activeTools: StructuredToolInterface[] =
   !(model instanceof ChatAnthropic) && process.env.LOCAL_LLM_TOOLS

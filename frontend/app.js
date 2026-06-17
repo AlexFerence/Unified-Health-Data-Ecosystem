@@ -130,10 +130,17 @@ function handleMessage(data) {
 
     switch (data.type) {
         case 'log':
+            if (typeof data.message === 'string' && data.message.startsWith('Calling tool:')) {
+                break;
+            }
+            if (typeof data.message === 'string' && data.message.startsWith('User:')) {
+                addLog('tool', data.message);
+                break;
+            }
             addLog(data.level || 'info', data.message);
             break;
         case 'tool_use':
-            addLog('tool', `Tool: ${data.tool} | Args: ${JSON.stringify(data.args)}`);
+            // Suppress tool invocation/input logs; keep only tool results in the UI.
             break;
         case 'user_message':
             // User message is already displayed when sent, skip duplicate
@@ -160,7 +167,7 @@ function handleMessage(data) {
             }
             break;
         case 'agent_thinking':
-            addLog('agent', 'Agent is thinking...');
+            addLog('tool', 'Agent is thinking...');
             break;
         case 'error':
             addLog('error', data.message);

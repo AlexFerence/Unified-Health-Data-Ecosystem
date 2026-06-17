@@ -1,5 +1,6 @@
 
 import { ChatAnthropic } from "@langchain/anthropic";
+import { ChatOpenAI } from "@langchain/openai";
 import { type StructuredToolInterface } from "@langchain/core/tools";
 import * as z from "zod";
 import { add, multiply, divide, getCurrentDate } from "./service/general-tools";
@@ -23,10 +24,30 @@ const MessagesState = new StateSchema({
   ),
 });
 
-const model = new ChatAnthropic({
-  model: "claude-sonnet-4-6",
-  temperature: 0
-});
+function createModel() {
+  if (process.env.ANTHROPIC_API_KEY) {
+    return new ChatAnthropic({
+      model: "claude-sonnet-4-6",
+      temperature: 0,
+    });
+  }
+
+  if (process.env.LOCAL_LLM_MODEL && process.env.LOCAL_LLM_URL) {
+    return new ChatOpenAI({
+      model: process.env.LOCAL_LLM_MODEL,
+      temperature: 0,
+      configuration: {
+        baseURL: process.env.LOCAL_LLM_URL,
+      },
+    });
+  }
+
+  throw new Error(
+    "No LLM configured: set ANTHROPIC_API_KEY, or both LOCAL_LLM_MODEL and LOCAL_LLM_URL."
+  );
+}
+
+const model = createModel();
 
 const toolsByName: Record<string, StructuredToolInterface> = {
   [add.name]: add,
