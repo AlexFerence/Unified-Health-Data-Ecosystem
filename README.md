@@ -19,6 +19,8 @@ LOCAL_LLM_MODEL="mistralai/ministral-3-14b-reasoning"
 LOCAL_EMBEDDING_MODEL="text-embedding-nomic-embed-text-v1"
 LOCAL_LLM_URL="http://localhost:1234/v1"
 ```
+I reccomend using LM Studio for local LLM setup
+<img width="884" height="321" alt="Screenshot 2026-06-17 at 3 05 32 PM" src="https://github.com/user-attachments/assets/02ef88f7-70bf-4bec-8698-12ba0cc9bd4b" />
 
 ### Option B: Cloud model (Anthropic)
 Use this if you prefer hosted inference.
