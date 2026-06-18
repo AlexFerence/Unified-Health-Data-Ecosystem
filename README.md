@@ -1,3 +1,5 @@
+# Unified Health Data Ecosystem
+<img width="1342" height="1562" alt="FlowChart drawio" src="https://github.com/user-attachments/assets/3e0622ce-5915-42a5-9a5f-9b1602e5cd91" />
 
 ## Quickstart
 
